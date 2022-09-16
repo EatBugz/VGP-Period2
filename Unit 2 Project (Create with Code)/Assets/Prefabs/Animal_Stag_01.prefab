@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5668619570506883220}
   - component: {fileID: 5668619570499599324}
+  - component: {fileID: 7269774609618546771}
   m_Layer: 0
   m_Name: Animal_Stag_01
   m_TagString: Untagged
@@ -60,6 +61,19 @@ Animator:
   m_HasTransformHierarchy: 0
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &7269774609618546771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668619570506940002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10402745, y: 0.29156733, z: 0.396837}
+  m_Center: {x: -0.0019545555, y: 0.28378132, z: 0.045832157}
 --- !u!1 &5668619570506942444
 GameObject:
   m_ObjectHideFlags: 0
