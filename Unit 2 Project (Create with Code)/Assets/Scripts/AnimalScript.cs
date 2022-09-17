@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class AnimalScript : MonoBehaviour
 {
-    public float speed = 15f;
+    public float speed = 10f;
 
     // Update is called once per frame
     void Update()
@@ -12,12 +12,12 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
-    // destroy the projectile and animal if they collide
+    // if animal collides with the player
     void OnCollisionEnter(Collision col) {
-        if (col.gameObject.tag == "Animal") {
-            Debug.Log("h");
+        if (col.gameObject.tag == "Player") {
             Destroy(col.gameObject);
             Destroy(gameObject);
+            Debug.Log("Game Over!");
         }
     }
 }

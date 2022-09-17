@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 5668619570506883220}
   - component: {fileID: 5668619570499599324}
   - component: {fileID: 7269774609618546771}
+  - component: {fileID: -7000061342852952225}
+  - component: {fileID: 8421107655358232508}
   m_Layer: 0
   m_Name: Animal_Stag_01
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5668619570506940002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 19.91}
   m_LocalScale: {x: 11, y: 11, z: 11}
   m_Children:
@@ -41,7 +43,7 @@ Transform:
   - {fileID: 5668619570506776146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &5668619570499599324
 Animator:
   serializedVersion: 3
@@ -72,8 +74,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10402745, y: 0.29156733, z: 0.396837}
-  m_Center: {x: -0.0019545555, y: 0.28378132, z: 0.045832157}
+  m_Size: {x: 0.10402745, y: 0.39744997, z: 0.396837}
+  m_Center: {x: -0.0019545555, y: 0.23084037, z: 0.045832157}
+--- !u!114 &-7000061342852952225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668619570506940002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a10891c11e8034196dfbb0c7dda78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeLimit: 7
+--- !u!114 &8421107655358232508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668619570506940002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3871072e5e544d4f9de8abf972b6d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &5668619570506942444
 GameObject:
   m_ObjectHideFlags: 0

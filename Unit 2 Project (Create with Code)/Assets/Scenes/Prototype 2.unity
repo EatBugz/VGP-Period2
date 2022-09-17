@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.18028417, g: 0.22571415, b: 0.30692247, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028468, g: 0.22571495, b: 0.30692354, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,6 +308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 610afbb40c4385d42aa33adfe3531f0a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 610afbb40c4385d42aa33adfe3531f0a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -487,7 +491,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
+  orthographic: 1
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -527,6 +531,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699960045}
+  - component: {fileID: 699960046}
   m_Layer: 0
   m_Name: Enemy Spawn
   m_TagString: Untagged
@@ -548,6 +553,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &699960046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699960044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2483be3c6b71e34e8ea7fd7b3c3e452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animals:
+  - {fileID: 176690081314592163, guid: 76c1c855799e21d4d933ccf9280df159, type: 3}
+  - {fileID: 3457950871238366152, guid: 63b04b7ce90b6ce4699c59d18c26db9a, type: 3}
+  - {fileID: 5668619570506940002, guid: b3f80cdb5b6ceb844ab657e891c11ddd, type: 3}
+  spawnRangeX: 20
+  spawnRangeZ: 20
+  startDelay: 2
+  spawnInterval: 1.5
 --- !u!1 &992285705
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,7 +719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: {fileID: 3902483490911026204, guid: bc1c75423a5565742a06965aa4a4e94d, type: 3}
-  speed: 15
 --- !u!65 &1859944650
 BoxCollider:
   m_ObjectHideFlags: 0
