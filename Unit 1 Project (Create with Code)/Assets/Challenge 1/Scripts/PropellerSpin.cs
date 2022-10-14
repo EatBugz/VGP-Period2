@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PropellerSpin : MonoBehaviour
 {
+    // propeller rotation speed
     public float rotationSpeed;
 
-    // Update is called once per frame
+    // rotate propeller
     void Update()
     {
         transform.Rotate(Vector3.back * Time.deltaTime * rotationSpeed);
