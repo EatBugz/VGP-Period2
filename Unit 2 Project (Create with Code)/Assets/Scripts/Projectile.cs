@@ -15,7 +15,6 @@ public class Projectile : MonoBehaviour
     // destroy the projectile and animal if they collide
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag == "Animal") {
-            Debug.Log("h");
             Destroy(col.gameObject);
             Destroy(gameObject);
         }

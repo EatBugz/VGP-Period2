@@ -10,7 +10,7 @@ public class FoodLauncher : MonoBehaviour
     void Update()
     {
         // get mouse input
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space)) {
 
             // create the projectile and update its transform
             GameObject foo = Instantiate(food, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.identity);
