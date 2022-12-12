@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 5f;
     public bool isGrounded = true;
     public bool gameOver = false;
+    public bool gameStart = false;
     private Animator anim;
     
     [Header("Particles")]
