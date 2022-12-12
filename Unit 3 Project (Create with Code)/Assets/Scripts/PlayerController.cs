@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour
         else if (col.gameObject.tag == "Obstacle") {
             gameOver = true;
             explosion.Play();
+            dirt.Stop();
             Debug.Log("Game Over!");
             anim.SetBool("Death_b", true);
             anim.SetInteger("DeathType_int", 1);
