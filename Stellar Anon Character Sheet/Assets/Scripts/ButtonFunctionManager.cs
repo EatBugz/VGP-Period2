@@ -15,6 +15,6 @@ public class ButtonFunctionManager : MonoBehaviour
 
     // method that goes back to the main menu
     public void mainMenuScene() {
-        sL.loadScene(0);
+        StartCoroutine(sL.loadScene(0));
     }
 }

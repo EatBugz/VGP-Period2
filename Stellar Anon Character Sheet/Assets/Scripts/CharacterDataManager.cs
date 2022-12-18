@@ -28,16 +28,6 @@ public class CharacterDataManager : MonoBehaviour
         updateCharacterList();
     }
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            characterList.Add(new Character("George", Character.SpeciesType.Human, Character.ClassType.Assault));
-        }
-        if (Input.GetKeyDown(KeyCode.F)) {
-            saveData();
-            Debug.Log("Saving!");
-        }
-    }
-
     // method that updates the contents of the character list
     public void updateCharacterList() {
         for (int i = 0; i < characterList.Count; i++) {
@@ -60,6 +50,7 @@ public class CharacterDataManager : MonoBehaviour
 
     // method that transfers the user to the character creation scene
     public void characterCreationScene() {
+        saveData();
         StartCoroutine(sL.loadScene(1));
     }
 

@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem
@@ -11,6 +13,17 @@ public class SaveSystem
         FileStream stream = new FileStream(path, FileMode.Create);
 
         CharacterData data = new CharacterData(cDM);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    public static void SaveCharacterData(List<Character> charList) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/characterData.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        CharacterData data = new CharacterData(charList);
 
         formatter.Serialize(stream, data);
         stream.Close();

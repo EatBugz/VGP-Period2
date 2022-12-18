@@ -13,4 +13,10 @@ public class CharacterData
             charList.Add(cDM.characterList[i]);
         }
     }
+
+    public CharacterData(List<Character> list) { 
+        for (int i = 0; i < list.Count; i++) {
+            charList.Add(list[i]);
+        }
+    }
 }
