@@ -15,6 +15,7 @@ public class CharacterDataManager : MonoBehaviour
     public GameObject sureDeleteNotif;
 
     private int charIndexToDelete = -1;
+    private int charIndexToSelect = -1;
 
     private SceneLoader sL;
 
@@ -24,6 +25,7 @@ public class CharacterDataManager : MonoBehaviour
         sL = GameObject.Find("Scene Loader").GetComponent<SceneLoader>();
 
         loadData();
+        loadSelectedCharacter();
 
         updateCharacterList();
     }
@@ -45,6 +47,8 @@ public class CharacterDataManager : MonoBehaviour
 
             // give buttons on click methods
             foo.transform.Find("Delete Button").GetComponent<Button>().onClick.AddListener(initializeCharacterDelete);
+            foo.transform.Find("Select Button").GetComponent<Button>().onClick.AddListener(selectCharacter);
+            foo.transform.Find("Select Button").GetComponent<Button>().onClick.AddListener(characterSheetScene);
         }
     }
 
@@ -52,6 +56,12 @@ public class CharacterDataManager : MonoBehaviour
     public void characterCreationScene() {
         saveData();
         StartCoroutine(sL.loadScene(1));
+    }
+
+    // method that moves the player to the character sheet scene
+    public void characterSheetScene() {
+        saveData();
+        StartCoroutine(sL.loadScene(2));
     }
 
     // method that quits the game
@@ -73,6 +83,25 @@ public class CharacterDataManager : MonoBehaviour
         saveData();
         charIndexToDelete = -1;
         hideSureDeleteNotif();
+    }
+
+    // method that allows user to select a character to go into the character sheet with
+    public void selectCharacter() {
+        GameObject dataCard = EventSystem.current.currentSelectedGameObject.transform.parent.gameObject;
+        charIndexToSelect = dataCard.transform.GetSiblingIndex();
+
+        saveSelectedCharacter();
+    }
+
+    // methods that saves, loads, and deletes a selected character data
+    public void saveSelectedCharacter() { SaveSystem.SaveSelectedCharacterData(characterList[charIndexToSelect], charIndexToSelect); }
+    public void loadSelectedCharacter() {
+        SelectedCharacterData data = SaveSystem.LoadSelectedCharacterData();
+
+        if (data != null) {
+            characterList.RemoveAt(data.charIndex);
+            characterList.Insert(data.charIndex, data.chara);
+        }
     }
 
     // methods that saves, loads, and deletes character data \\

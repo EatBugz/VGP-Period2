@@ -131,21 +131,41 @@ public class Character
 
     // method that gives bonuses based on class choice
     public void classBonus(int[] bonus) {
-        // stat bonuses
+        // attribute bonuses
         this.movement += bonus[0];
         this.maxHitPoints += bonus[1];
+        // skill bonuses
         this.generalSkill += bonus[2];
         this.meleeSkill += bonus[3];
         this.firearmSkill += bonus[4];
         this.intelligenceSkill += bonus[5];
         this.dexteritySkill += bonus[6];
+        // determination bonuses
         this.generalDetermination += bonus[7];
         this.determinationOfWill += bonus[8];
         this.determinationOfBody += bonus[9];
+        // power bonuses
         this.generalPower += bonus[10];
         this.powerOfStrength += bonus[11];
         this.powerOfCharisma += bonus[12];
+        // save bonus
         this.save += bonus[13];
+
+        // if the general skill changed, change the specific skills
+        if (bonus[2] != 0) {
+            this.meleeSkill += bonus[2];
+            this.firearmSkill += bonus[2];
+            this.intelligenceSkill += bonus[2];
+            this.dexteritySkill += bonus[2];
+        }
+        if (bonus[7] != 0) {
+            this.determinationOfWill += bonus[7];
+            this.determinationOfBody += bonus[7];  
+        }
+        if (bonus[10] != 0) {
+            this.powerOfStrength += bonus[10];
+            this.powerOfCharisma += bonus[10]; 
+        }
 
         // proficiency bonuses
         for (int i = 0; i < armorProf.Count; i++) armorProf.RemoveAt(0);
@@ -169,7 +189,7 @@ public class Character
             this.weaponProf.Add(WeaponType.Mechanical);
             this.weaponProf.Add(WeaponType.Experimental);
         }
-        else if (this.profession == ClassType.Support) {
+        else if (this.profession == ClassType.Medic) {
             this.armorProf.Add(ArmorType.Light);
             this.armorProf.Add(ArmorType.Medium);
             this.weaponProf.Add(WeaponType.Mechanical);
@@ -199,6 +219,40 @@ public class Character
         if (this.species == SpeciesType.Numo) return "Numo";
         if (this.species == SpeciesType.Stellos) return "Stellos";
         return null;
+    }
+
+    public string getWeaponProfString() {
+        string str = "";
+        for (int i = 0; i < this.weaponProf.Count; i++) {
+            if (i != this.weaponProf.Count-1) {
+                if (this.weaponProf[i] == WeaponType.Traditional) str += "Traditional, ";
+                else if (this.weaponProf[i] == WeaponType.Mechanical) str += "Mechanical, ";
+                else if (this.weaponProf[i] == WeaponType.Experimental) str += "Experimental, ";
+            }
+            else {
+                if (this.weaponProf[i] == WeaponType.Traditional) str += "Traditional";
+                else if (this.weaponProf[i] == WeaponType.Mechanical) str += "Mechanical";
+                else if (this.weaponProf[i] == WeaponType.Experimental) str += "Experimental";
+            }
+        }
+        return str;
+    }
+
+    public string getArmorProfString() {
+        string str = "";
+        for (int i = 0; i < this.armorProf.Count; i++) {
+            if (i != this.armorProf.Count-1) {
+                if (this.armorProf[i] == ArmorType.Light) str += "Light, ";
+                else if (this.armorProf[i] == ArmorType.Medium) str += "Medium, ";
+                else if (this.armorProf[i] == ArmorType.Heavy) str += "Heavy, ";
+            }
+            else {
+                if (this.armorProf[i] == ArmorType.Light) str += "Light";
+                else if (this.armorProf[i] == ArmorType.Medium) str += "Medium";
+                else if (this.armorProf[i] == ArmorType.Heavy) str += "Heavy";
+            }
+        }
+        return str;
     }
 
     public int getLevel() { return this.level; }

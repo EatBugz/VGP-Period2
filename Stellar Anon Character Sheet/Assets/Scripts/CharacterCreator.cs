@@ -35,6 +35,8 @@ public class CharacterCreator : MonoBehaviour
     public TextMeshProUGUI powerOfCharismaText;
     public TextMeshProUGUI saveText;
     public TextMeshProUGUI startingFeatureText;
+    public TextMeshProUGUI weaponProfText;
+    public TextMeshProUGUI armorProfText;
 
     // user input saves
     [Header("User Input")]
@@ -102,6 +104,8 @@ public class CharacterCreator : MonoBehaviour
             powerOfCharismaText.text = ""+createdCharacter.getPowerOfCharisma();
             saveText.text = ""+createdCharacter.getSave();
             startingFeatureText.text = "Starting Feature: " + createdCharacter.getStartingFeature();
+            weaponProfText.text = "Weapon Proficiencies: " + createdCharacter.getWeaponProfString();
+            armorProfText.text = "Armor Proficiencies: " + createdCharacter.getArmorProfString();
         }
     }
     

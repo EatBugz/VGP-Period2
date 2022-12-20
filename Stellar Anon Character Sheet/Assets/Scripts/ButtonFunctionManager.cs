@@ -17,4 +17,9 @@ public class ButtonFunctionManager : MonoBehaviour
     public void mainMenuScene() {
         StartCoroutine(sL.loadScene(0));
     }
+
+    // method that goes to the character sheet
+    public void characterSheetScene() {
+        StartCoroutine(sL.loadScene(2));
+    }
 }

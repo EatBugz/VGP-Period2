@@ -48,9 +48,41 @@ public class SaveSystem
         }
     }
 
+    // saves a selected character data \\
+    public static void SaveSelectedCharacterData(Character c, int i) {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/selectedCharacterData.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        SelectedCharacterData data = new SelectedCharacterData(c, i);
+
+        formatter.Serialize(stream, data);
+        stream.Close();
+    }
+
+    // load the selected character data \\
+    public static SelectedCharacterData LoadSelectedCharacterData() {
+        string path = Application.persistentDataPath + "/selectedCharacterData.txt";
+
+        if (File.Exists(path)) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            SelectedCharacterData data = formatter.Deserialize(stream) as SelectedCharacterData;
+            stream.Close();
+
+            return data;
+        }
+        else {
+            Debug.LogError("Save File not found in " + path);
+            return null;
+        }
+    }
+
     // deletes data
     public static void DeleteData() {
         string characterDataPath = Application.persistentDataPath + "/characterData.txt";
+        string selectedCharacterDataPath = Application.persistentDataPath + "/selectedCharacterData.txt";
 
         // delete the character data
         if (File.Exists(characterDataPath)) {
@@ -58,6 +90,13 @@ public class SaveSystem
         }
         else {
             Debug.LogError("File not found in " + characterDataPath);
+        }
+        // delete the selected character data
+        if (File.Exists(selectedCharacterDataPath)) {
+            File.Delete(selectedCharacterDataPath);
+        }
+        else {
+            Debug.LogError("File not found in " + selectedCharacterDataPath);
         }
     }
 }
