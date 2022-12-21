@@ -1317,7 +1317,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5177ddbe149c64dae62e66378b6f7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCharacterIndex: -1
   nameTitleText: {fileID: 312710568}
+  movementText: {fileID: 1029875354}
+  hitDieTypeText: {fileID: 228329392}
+  maxHitPointsText: {fileID: 521515867}
+  generalSkillText: {fileID: 1533320287}
+  meleeSkillText: {fileID: 466648693}
+  firearmSkillText: {fileID: 1122429913}
+  intelligenceSkillText: {fileID: 891344898}
+  dexteritySkillText: {fileID: 642125108}
+  generalDeterminationText: {fileID: 1072356528}
+  determinationOfWillText: {fileID: 1183692913}
+  determinationOfBodyText: {fileID: 208508460}
+  generalPowerText: {fileID: 448436642}
+  powerOfStrengthText: {fileID: 22443337}
+  powerOfCharismaText: {fileID: 580585615}
+  saveText: {fileID: 107633842}
 --- !u!1 &431655672
 GameObject:
   m_ObjectHideFlags: 0
