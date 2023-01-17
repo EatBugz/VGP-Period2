@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Item
 {
+    // item type
     public enum ItemType {
         None,
         Sword,
         Shield,
         Armor
     }
+    // other attributes
     private int amount;
     private Sprite itemSprite;
     private ItemType itemType;
@@ -28,17 +30,6 @@ public class Item
 
     ///   Accessability Methods   \\\
     public Sprite getSprite() { return this.itemSprite; }
-
-    /*
-    public string getName() { 
-        switch (this.itemType) {
-            case this.itemType.Sword:
-                return "Sword";
-            case this.itemType.Shield:
-                return "Shield";
-            case this.itemType.Armor:
-                return "Armor";
-        }
-    }
-    */
+    public ItemType getItemType() { return this.itemType; }
+    public int getAmount() { return this.amount; }
 }

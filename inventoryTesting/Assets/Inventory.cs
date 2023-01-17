@@ -25,21 +25,28 @@ public class Inventory : MonoBehaviour
         inventory[3] = new Item(aM.ItemSprites[1], Item.ItemType.Shield);
         inventory[2] = new Item(aM.ItemSprites[2], Item.ItemType.Armor);
 
-        updateInventoryContents();
+        updateInventoryUIContents();
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             string str = "";
             for (int i = 0; i < inventory.Length; i++) {
-                //str += inventory[i].getName();
-                Debug.Log("Pain");
+                if (inventory[i] != null) str += inventory[i].getItemType().ToString() + " ";
+                else str += "None ";
             }
+            Debug.Log(str);
         }
     }
 
     // method that updates the inventory slots with the correct item
-    public void updateInventoryContents() {
+    public void updateInventoryUIContents() {
+        // reset ui contents already there
+        for (int i = 0; i < inventorySlots.Count; i++) {
+            if (inventorySlots[i].transform.childCount != 0) Destroy(inventorySlots[i].transform.GetChild(0).gameObject);
+        }
+
+        // add new ui items
         for (int i = 0; i < inventory.Length; i++) {
             if (inventory[i] != null) {
                 // create the item
@@ -61,5 +68,26 @@ public class Inventory : MonoBehaviour
         }
 
         inventory = newList;
+    }
+
+    // method that swaps the position of the items in the inventory
+    public void switchItemPlace(int itemIndex1, int itemIndex2) {
+        Item foo = inventory[itemIndex1];
+        inventory[itemIndex1] = inventory[itemIndex2];
+        inventory[itemIndex2] = foo;
+    }
+
+    // method that moves the position of an item in the inventory
+    public void moveItemPlace(int origin, int destination) {
+        inventory[destination] = inventory[origin];
+        inventory[origin] = null;
+    }
+
+    // method that gets the index of the inventorySlot in the inventorySlots list
+    public int getInventorySlotIndex(GameObject slot) {
+        for (int i = 0; i < inventorySlots.Count; i++) {
+            if (inventorySlots[i] == slot) return i;
+        }
+        return -1;
     }
 }

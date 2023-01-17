@@ -18,7 +18,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnBeginDrag(PointerEventData eventData) {
-        Debug.Log("Begin drag");
         // hierarchy stuff
         parent = transform.parent;
         transform.SetParent(transform.root);
@@ -36,7 +35,6 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData) {
-        Debug.Log("End drag");
         // set the parent
         transform.SetParent(parent);
 
