@@ -29,14 +29,7 @@ public class Inventory : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            string str = "";
-            for (int i = 0; i < inventory.Length; i++) {
-                if (inventory[i] != null) str += inventory[i].getItemType().ToString() + " ";
-                else str += "None ";
-            }
-            Debug.Log(str);
-        }
+        if (Input.GetKeyDown(KeyCode.Space)) printInventory();
     }
 
     // method that updates the inventory slots with the correct item
@@ -89,5 +82,15 @@ public class Inventory : MonoBehaviour
             if (inventorySlots[i] == slot) return i;
         }
         return -1;
+    }
+
+    // method that prints the contents of the inventory
+    public void printInventory() {
+        string str = "";
+        for (int i = 0; i < inventory.Length; i++) {
+            if (inventory[i] != null) str += inventory[i].getItemType().ToString() + " ";
+            else str += "None ";
+        }
+        Debug.Log(str);
     }
 }
