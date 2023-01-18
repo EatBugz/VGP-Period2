@@ -5,11 +5,14 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    private Item[] inventory = new Item[1];
+    private Item[] inventory = new Item[5];
     public List<GameObject> inventorySlots = new List<GameObject>();
 
+    [Header("Prefabs")]
     public GameObject itemPrefab;
+    public GameObject inventorySlotPrefab;
     private GameObject canvas;
+    private GameObject inventorySpace;
 
     private AssetManager aM;
 
@@ -17,19 +20,34 @@ public class Inventory : MonoBehaviour
     void Awake() {
         aM = GameObject.Find("Assets Manager").GetComponent<AssetManager>();
         canvas = GameObject.Find("Canvas");
+        inventorySpace = GameObject.Find("Inventory Space");
         updateInventorySize();
     }
 
     void Start() {
-        inventory[0] = new Item(aM.ItemSprites[0], Item.ItemType.Sword);
-        inventory[3] = new Item(aM.ItemSprites[1], Item.ItemType.Shield);
-        inventory[2] = new Item(aM.ItemSprites[2], Item.ItemType.Armor);
-
+        addItem(AssetManager.sword);
+        addItem(AssetManager.shield);
+        addItem(AssetManager.armor);
         updateInventoryUIContents();
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) printInventory();
+
+       if (Input.GetKeyDown(KeyCode.H)) addItem(new Item(aM.ItemSprites[0], Item.ItemType.Sword));
+    }
+
+    // method that adds an item to the inventory
+    public void addItem(Item item) {
+        for (int i = 0; i < inventory.Length; i++) {
+            if (inventory[i] == null) {
+                inventory[i] = item;
+                return;
+            }
+        }
+
+        // if no space left
+        Debug.LogError("No space left!");
     }
 
     // method that updates the inventory slots with the correct item
@@ -52,15 +70,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // method that updates the inventory slots to match the inventory size
+    // method that updates the ui inventory size to match the inventory size of the "code"
     public void updateInventorySize() {
-        Item[] newList = new Item[inventorySlots.Count];
-
-        for (int i = 0; i < inventory.Length; i++) {
-            newList[i] = inventory[i];
+        // reset
+        for (int i = 0; i < inventorySpace.transform.childCount; i++) {
+            Destroy(inventorySpace.transform.GetChild(0));
+            inventorySlots.RemoveAt(0);
         }
 
-        inventory = newList;
+        // instantiate new inventory slots
+        for (int i = 0; i < inventory.Length; i++) {
+            GameObject foo = Instantiate(inventorySlotPrefab, inventorySpace.transform);
+            inventorySlots.Add(foo);
+        }
     }
 
     // method that swaps the position of the items in the inventory

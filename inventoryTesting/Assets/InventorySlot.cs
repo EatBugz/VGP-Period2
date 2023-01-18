@@ -27,7 +27,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         // empty inventory slot
         if (currentItem == null) {
             dI.parent = transform;
-            inventory.moveItemPlace(dIInventorySlotIndex, inventorySlotIndex);
+            if (dI.parent != gameObject) inventory.moveItemPlace(dIInventorySlotIndex, inventorySlotIndex);
         }
         // if there is already an item, swap the positions
         else {
