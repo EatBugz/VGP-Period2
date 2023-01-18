@@ -56,9 +56,6 @@ public class Inventory : MonoBehaviour
         }
 
         updateInventoryUIContents();
-
-        // if no space left
-        //Debug.LogError("No space left!");
     }
 
     // method that updates the inventory slots with the correct item
@@ -70,7 +67,7 @@ public class Inventory : MonoBehaviour
 
         // add new ui items
         for (int i = 0; i < inventory.Length; i++) {
-            if (inventory[i] != null) {
+            if (inventory[i] != null && inventorySlots[i].transform.childCount == 0) {
                 // create the item
                 GameObject foo = Instantiate(itemPrefab, canvas.transform);
                 // set correct parent inventory slot
