@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Inventory : MonoBehaviour
 {
@@ -24,37 +25,52 @@ public class Inventory : MonoBehaviour
         updateInventorySize();
     }
 
-    /*
     void Start() {
-        addItem(AssetManager.sword);
-        addItem(AssetManager.shield);
-        addItem(AssetManager.armor);
-        updateInventoryUIContents();
+        addItems(new List<Item>() {AssetManager.sword, AssetManager.shield, AssetManager.armor});
     }
-    */
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) printInventory();
 
        if (Input.GetKeyDown(KeyCode.H)) updateInventoryUIContents();
 
-       if (Input.GetKeyDown(KeyCode.J)) {
+        if (Input.GetKeyDown(KeyCode.K)) {
             addItem(AssetManager.sword);
-            //addItem(AssetManager.shield);
-            //addItem(AssetManager.armor);
-       }
+            updateInventoryUIContents();
+        }
+        if (Input.GetKeyDown(KeyCode.L)) {
+            addItem(AssetManager.shield);
+            updateInventoryUIContents();
+        }
     }
 
     // method that adds an item to the "code" inventory
     public void addItem(Item item) {
+        int freeSpaces = 0;
+        // check for free space
+        for (int i = 0; i < inventory.Length; i++) if (inventory[i] == null) freeSpaces++;
+        if (freeSpaces == 0) {
+            Debug.LogError("No space for item!");
+            return;
+        }
+
+        // if there's a free space
         for (int i = 0; i < inventory.Length; i++) {
-            // if there's a free space
             if (inventory[i] == null) {
                 inventory[i] = item;
                 break;
             }
         }
+    }
 
+    // method that adds multiple items to the inventory
+    public void addItems(List<Item> itemList) {
+        // add list of items to inventory
+        for (int i = 0; i < itemList.Count; i++) {
+            addItem(itemList[i]);
+        }
+
+        // update the UI
         updateInventoryUIContents();
     }
 
@@ -62,12 +78,16 @@ public class Inventory : MonoBehaviour
     public void updateInventoryUIContents() {
         // reset ui contents already there
         for (int i = 0; i < inventorySlots.Count; i++) {
-            if (inventorySlots[i].transform.childCount != 0) Destroy(inventorySlots[i].transform.GetChild(0).gameObject);
+            if (inventorySlots[i].transform.childCount != 0) {
+                for (int j = 0; j < inventorySlots[i].transform.childCount; j++) {
+                    Destroy(inventorySlots[i].transform.GetChild(0).gameObject);
+                }
+            }
         }
 
         // add new ui items
         for (int i = 0; i < inventory.Length; i++) {
-            if (inventory[i] != null && inventorySlots[i].transform.childCount == 0) {
+            if (inventory[i] != null) {
                 // create the item
                 GameObject foo = Instantiate(itemPrefab, canvas.transform);
                 // set correct parent inventory slot
