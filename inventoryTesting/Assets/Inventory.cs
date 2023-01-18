@@ -24,30 +24,41 @@ public class Inventory : MonoBehaviour
         updateInventorySize();
     }
 
+    /*
     void Start() {
         addItem(AssetManager.sword);
         addItem(AssetManager.shield);
         addItem(AssetManager.armor);
         updateInventoryUIContents();
     }
+    */
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) printInventory();
 
-       if (Input.GetKeyDown(KeyCode.H)) addItem(new Item(aM.ItemSprites[0], Item.ItemType.Sword));
+       if (Input.GetKeyDown(KeyCode.H)) updateInventoryUIContents();
+
+       if (Input.GetKeyDown(KeyCode.J)) {
+            addItem(AssetManager.sword);
+            //addItem(AssetManager.shield);
+            //addItem(AssetManager.armor);
+       }
     }
 
-    // method that adds an item to the inventory
+    // method that adds an item to the "code" inventory
     public void addItem(Item item) {
         for (int i = 0; i < inventory.Length; i++) {
+            // if there's a free space
             if (inventory[i] == null) {
                 inventory[i] = item;
-                return;
+                break;
             }
         }
 
+        updateInventoryUIContents();
+
         // if no space left
-        Debug.LogError("No space left!");
+        //Debug.LogError("No space left!");
     }
 
     // method that updates the inventory slots with the correct item
