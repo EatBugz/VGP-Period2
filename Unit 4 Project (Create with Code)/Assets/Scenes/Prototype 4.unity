@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -318,6 +318,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+--- !u!1001 &670988182
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2141230335085470643, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_Name
+      value: PowerupSmash
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143671679034361597, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
 --- !u!1 &788697258
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +506,12 @@ MonoBehaviour:
   powerupStrength: 15
   powerupLength: 7
   powerupIndicator: {fileID: 1558616014}
+  currentPowerup: 0
+  rocketPrefab: {fileID: 406199891951998799, guid: 8b209ad435680c547939ef4f17e66aa1, type: 3}
+  hangTime: 0.5
+  smashSpeed: 15
+  explosionForce: 15
+  explosionRadius: 5
 --- !u!1 &799144896
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,8 +555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf9a9a7411ac2a4590a7b777be040b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5427829218142006234, guid: bb5a360cc189b474280af0f65ba53784, type: 3}
-  powerup: {fileID: 2141230335085470643, guid: d7456103411eac2458aa258272b21adf, type: 3}
+  enemyPrefabs:
+  - {fileID: 5427829218142006234, guid: bb5a360cc189b474280af0f65ba53784, type: 3}
+  - {fileID: 5427829218142006234, guid: 21c862555e089c24c831f04c176e0bb4, type: 3}
+  powerups:
+  - {fileID: 2141230335085470643, guid: d7456103411eac2458aa258272b21adf, type: 3}
+  - {fileID: 2141230335085470643, guid: 6f77e6dafc642434a8a5d82724a822f3, type: 3}
+  - {fileID: 2141230335085470643, guid: 33f3b52a0bd9cd94cb63dcca6b8d2f79, type: 3}
   spawnRange: 9
   enemyCount: 0
   wave: 1
