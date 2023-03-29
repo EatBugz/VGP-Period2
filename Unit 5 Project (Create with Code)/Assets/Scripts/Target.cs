@@ -44,12 +44,16 @@ public class Target : MonoBehaviour
     // collision
     public void OnMouseDown() {
         if (gM.gaming) {
-            if (gameObject.tag == "Bad") {
-                gM.gameOver();
-            }
-            Instantiate(explosionParticles, transform.position, explosionParticles.transform.rotation);
-            Destroy(gameObject);
-            gM.updateScore(pointValue);
+            destroyObject();
         }
+    }
+
+    // destroys itself
+    public void destroyObject() {
+        if (gameObject.tag == "Bad") gM.updateLives(-1);
+
+        Instantiate(explosionParticles, transform.position, explosionParticles.transform.rotation);
+        Destroy(gameObject);
+        gM.updateScore(pointValue);
     }
 }
