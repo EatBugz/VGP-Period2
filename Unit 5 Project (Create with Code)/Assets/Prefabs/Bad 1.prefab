@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179fd0805337edd448b1aae1d7b8e7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: -5
+  pointValue: -30
   explosionParticles: {fileID: 8088288519815545661, guid: c7ad2532a6eeb40b59033c75e71fa054, type: 3}
   minSpeed: 12
   maxSpeed: 16

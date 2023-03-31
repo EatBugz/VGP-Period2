@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    // vars
     private Rigidbody rb;
     private GameManager gM;
-
     public int pointValue;
     public GameObject explosionParticles;
 
@@ -17,7 +17,7 @@ public class Target : MonoBehaviour
     public float xRange = 4f;
     public float ySpawnPos = -6f;
 
-    // Start is called before the first frame update
+    // get stuff
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -42,18 +42,21 @@ public class Target : MonoBehaviour
     }
 
     // collision
-    public void OnMouseDown() {
-        if (gM.gaming) {
-            destroyObject();
+    public void OnCollisionEnter(Collision col) {
+        // if the target hits the sensor
+        if (col.gameObject.name == "Sensor" && gameObject.tag == "Good") {
+            gM.updateLives(-1);
+            destroyObject(false);
+        }
+        else if (col.gameObject.name == "Sensor" && gameObject.tag == "Bad") {
+            destroyObject(false);
         }
     }
 
     // destroys itself
-    public void destroyObject() {
-        if (gameObject.tag == "Bad") gM.updateLives(-1);
-
+    public void destroyObject(bool giveScore) {
         Instantiate(explosionParticles, transform.position, explosionParticles.transform.rotation);
         Destroy(gameObject);
-        gM.updateScore(pointValue);
+        if (giveScore) gM.updateScore(pointValue);
     }
 }

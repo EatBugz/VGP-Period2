@@ -5,13 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(TrailRenderer), typeof(BoxCollider))]
 public class ClickSwipe : MonoBehaviour
 {
+    // vars
     private GameManager gM;
     private Vector3 mousePos;
     private TrailRenderer trail;
     private BoxCollider col;
     public bool swiping = false;
 
-    // Start is called before the first frame update
+    // get stuff
     void Awake()
     {
         trail = GetComponent<TrailRenderer>();
@@ -21,7 +22,7 @@ public class ClickSwipe : MonoBehaviour
         gM = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    // Update is called once per frame
+    // trail rendering plus switching collision on and off
     void Update()
     {
         if (gM.gaming) {
@@ -37,10 +38,10 @@ public class ClickSwipe : MonoBehaviour
         }
     }
 
-    // collision
+    // collision with targets
     public void OnCollisionEnter(Collision coll) {
         if (coll.gameObject.tag == "Bad" || coll.gameObject.tag == "Good") {
-            coll.gameObject.GetComponent<Target>().destroyObject();
+            coll.gameObject.GetComponent<Target>().destroyObject(true);
         }
     }
 
